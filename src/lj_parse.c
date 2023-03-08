@@ -2337,7 +2337,8 @@ static void parse_return(LexState *ls)
       if (e.k == VCALL) {  /* Check for tail call. */
 	BCIns *ip = bcptr(fs, &e);
 	/* It doesn't pay off to add BC_VARGT just for 'return ...'. */
-	if (bc_op(*ip) == BC_VARG) goto notailcall;
+	// if (bc_op(*ip) == BC_VARG) goto notailcall;
+  goto notailcall;
 	fs->pc--;
 	ins = BCINS_AD(bc_op(*ip)-BC_CALL+BC_CALLT, bc_a(*ip), bc_c(*ip));
       } else {  /* Can return the result from any register. */
