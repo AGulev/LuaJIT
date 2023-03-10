@@ -138,9 +138,9 @@ typedef uintptr_t BloomFilter;
 ** two non-FP args. The amalgamated compile covers all LJ_FUNC cases. Only
 ** indirect calls and related tail-called C functions are marked as fastcall.
 */
-#if defined(__i386__)
-#define LJ_FASTCALL	__attribute__((fastcall))
-#endif
+// #if defined(__i386__)
+// #define LJ_FASTCALL	__attribute__((fastcall))
+// #endif
 
 #define LJ_LIKELY(x)	__builtin_expect(!!(x), 1)
 #define LJ_UNLIKELY(x)	__builtin_expect(!!(x), 0)
@@ -251,9 +251,9 @@ static LJ_AINLINE uint32_t lj_getu32(const void *p)
 #define LJ_INLINE	__inline
 #define LJ_AINLINE	__forceinline
 #define LJ_NOINLINE	__declspec(noinline)
-#if defined(_M_IX86)
-#define LJ_FASTCALL	__fastcall
-#endif
+// #if defined(_M_IX86)
+// #define LJ_FASTCALL	__fastcall
+// #endif
 
 #ifdef _M_PPC
 unsigned int _CountLeadingZeros(long);
