@@ -212,8 +212,6 @@
 #define LJ_ARCH_NUMMODE		LJ_NUMMODE_SINGLE_DUAL
 #ifndef LUAJIT_DISABLE_GC64
 #define LJ_TARGET_GC64		1
-#elif LJ_TARGET_OSX
-#error "macOS requires GC64 -- don't disable it"
 #endif
 
 #elif LUAJIT_TARGET == LUAJIT_ARCH_ARM
@@ -466,8 +464,14 @@
 #endif
 #endif
 #elif !LJ_TARGET_PS3
+#if __clang__
+#if ((__clang_major__ < 3) || ((__clang_major__ == 3) && __clang_minor__ < 5))
+#error "Need at least Clang 3.5 or newer"
+#endif
+#else
 #if (__GNUC__ < 4) || ((__GNUC__ == 4) && __GNUC_MINOR__ < 3)
 #error "Need at least GCC 4.3 or newer"
+#endif
 #endif
 #endif
 #endif
